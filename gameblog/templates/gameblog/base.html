@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<html>
+        <head>
+            <title>Life is strange blog</title>
+
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+            <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+            <link rel="stylesheet" href="{% static 'css/index.css' %}">
+        </head>
+        <body>
+        <div class="container">
+            <div class="page-header">
+            	    {% load staticfiles %}
+            	    <img src="{% static 'img/main.png' %}" width="1000" height="400" alt="My image" />
+                <h1>
+                	<p><a href="{% url 'gameblog.views.post_new' %}" class="top-menu"> <span class="glyphicon glyphicon-plus"></span></a>
+                	<a href="{% url 'gameblog.views.post_list' %}">Life is strange blog</a></p>
+                </h1>
+            </div>
+
+             <div class="content container">
+                <div class="row">
+                    <div class="col-md-8">
+                        {% block content %}
+                		{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </body>
+    </html>
