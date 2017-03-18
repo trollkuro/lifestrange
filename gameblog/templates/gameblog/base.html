@@ -12,9 +12,11 @@
         <div class="container">
             <div class="page-header">
             	    {% load staticfiles %}
-            	    <img src="{% static 'img/main.png' %}" width="1000" height="400" alt="My image" />
+            	    <img src="{% static 'img/main.png' %}" alt="My image" />
                 <h1>
-                	<p><a href="{% url 'gameblog.views.post_new' %}" class="top-menu"> <span class="glyphicon glyphicon-plus"></span></a>
+                <!--
+                	<p><a href="{% url 'gameblog.views.post_new' %}" class="top-menu"> <span class="glyphicon glyphicon-plus"></span></a> 
+                -->
                 	<a href="{% url 'gameblog.views.post_list' %}">Life is strange blog</a></p>
                 </h1>
             </div>
