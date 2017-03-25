@@ -8,7 +8,13 @@
             <div class="post">
                 <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
                     <p>{{ post.text|linebreaksbr }}</p>
-                    <p><span class="glyphicon glyphicon-heart"></span>{{ post.likes }}</p>
+                    <button id="likes" data-id="{{post.id}}"
+                        class="blike btn btn-min btn-danger glyphicon glyphicon-heart"
+                        type="button"> 
+                            {% if post.likes > 0 %} 
+                                {{post.likes}}
+                            {% endif %}
+                    </button>
                     <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
             </div>
             {% endfor %}

@@ -1,8 +1,9 @@
-from django.shortcuts import render
-from .models import Post
+
+from .models import Post, Comment
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm, CommentForm
 from django.shortcuts import redirect
+from django.http import HttpResponse
 
 
 # view all posts
@@ -27,7 +28,6 @@ def post_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
-            post.likes = 0
             post.save()
             return redirect('gameblog.views.post_detail', pk=post.pk)
     else:
@@ -42,7 +42,6 @@ def post_edit(request, pk):
             if form.is_valid():
                 post = form.save(commit=False)
                 post.user = request.user
-                post.likes = 0
                 post.save()
                 return redirect('gameblog.views.post_detail', pk=post.pk)
         else:
@@ -62,4 +61,21 @@ def add_comment_to_post(request, pk):
     else:
         form = CommentForm()
     return render(request, 'gameblog/add_comment_to_post.html', {'form': form})
+
+#like post
+def like_post(request):
+    post_id = request.GET.get('post_id', None)
+
+    likes = 0
+    if post_id:
+       post = Post.objects.get(id=int(post_id))
+       if post is not None:
+            likes = post.likes+1
+            post.likes = likes
+            post.save()
+
+    return HttpResponse(likes)
+
+
+
 

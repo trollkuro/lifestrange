@@ -22,6 +22,12 @@
                 <strong>{{ comment.author }}</strong>
                 <p>{{ comment.text|linebreaks }}</p>
             </div>
+
+            <a href="{% url 'add_comment_to_post' pk=post.pk %}"> Replay</a>
+                {% for reply in comment.replies.all %}
+                    
+                    {{ reply.comment }}
+                {% endfor %}
         {% empty %}
             <p>No comments here yet :(</p>
         {% endfor %}
