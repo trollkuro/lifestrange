@@ -1,5 +1,5 @@
 
-from .models import Post, Comment
+from .models import Post, Comment, Photo
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm, CommentForm
 from django.shortcuts import redirect
@@ -20,6 +20,11 @@ def post_detail(request, pk):
 def post_new(request):
         form = PostForm()
         return render(request, 'gameblog/post_edit.html', {'form': form})
+
+#photo???
+def photo_list(request):
+    photo = Photo.objects.all()
+    return render(request, 'gameblog/post_detail.html', {'photo':photo})
 
 #save post
 def post_new(request):
