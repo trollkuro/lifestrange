@@ -29,11 +29,17 @@ $('.reply-form__button').on('click', function () {
 	var text = modal[0].text.value;
 	var commentId = modal.attr('comment-id');
 	var postId = modal.attr('post-id');
-	console.log(postId);
+	// console.log(postId);
 		
-	// $.ajax({
-	// 	url: 'comment/',
-	// 	type: 'POST',
-	// 	data: { parent_id: commentId,  }
-	// })
+	$.ajax({
+		url: 'comment/',
+		type: 'POST',
+		data: { 
+			csrfmiddlewaretoken: 'LnWCguOwvj6DNq2MLjVYOV1hTj8LdWNt',
+			parent_id: commentId, 
+			text: text, 
+			author: author  
+		}
+	});
+	location.reload();
 })
