@@ -61,3 +61,41 @@
     .comment {
     margin: 20px 0px 20px 20px;
     }
+
+.reply-form {
+    background: white;
+    border-radius: 3px;
+    left: 50%;
+    min-width: 250px;
+    min-height: 250px;
+    position: absolute;
+    padding: 10px 0 10px 40px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+
+    /* flexbox properties */
+    /*align-items: center;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.reply-form__title {
+    margin: 0;
+    padding: 0;
+    width: 70%;
+}
+
+.reply-form__form-control {
+    width: 70%;
+}
+
+.reply-form__form-control input, 
+.reply-form__form-control textarea {
+    width: 100%;
+}
+
+.reply-form__button {
+    float: left;
+}
