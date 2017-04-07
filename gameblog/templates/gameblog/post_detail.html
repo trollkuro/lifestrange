@@ -16,7 +16,7 @@
         </div>
 
         <article id="reply-modal" class="modal fade" role="dialog">
-            <form id="reply-form" class="reply-form">
+            <form id="reply-form" class="reply-form" post-id="{{ post.id }}">
                 <h1 class="reply-form__title">Reply</h1>
                 <div class="reply-form__form-control">
                     <label for="author">Author:</label>
@@ -41,15 +41,21 @@
     <hr>
         <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
         {% for comment in post.comments.all %}
-            <div class="comment">
-                <div class="date">{{ comment.created_date }}</div>
-                <strong>{{ comment.author }}</strong>
-                <p>{{ comment.text|linebreaks }}</p>
-            </div>
+            <div id="comments">
+                <div class="comment">
+                    <div class="date">{{ comment.created_date }}</div>
+                    <strong>{{ comment.author }}</strong>
+                    <p>{{ comment.text|linebreaks }}</p>
+                </div>
 
-            <a data-toggle="modal" data-target="#reply-modal" onClick="">Reply</a>
-                {% empty %}
-                    <p>No comments here yet :(</p>
+                <a  data-toggle="modal" 
+                    data-target="#reply-modal"
+                    comment-id="{{ comment.id }}">
+                    Reply
+                </a>
+                    {% empty %}
+                        <p>No comments here yet :(</p>
+            </div>          
         {% endfor %}
     {% endblock %}
     
