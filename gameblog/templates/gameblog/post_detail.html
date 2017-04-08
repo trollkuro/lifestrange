@@ -18,6 +18,7 @@
         <article id="reply-modal" class="modal fade" role="dialog">
             <form id="reply-form" class="reply-form" post-id="{{ post.id }}">
                 <h1 class="reply-form__title">Reply</h1>
+                {% csrf_token %}
                 <div class="reply-form__form-control">
                     <label for="author">Author:</label>
                     <input type="text" name="author" />
