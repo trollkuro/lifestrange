@@ -15,29 +15,48 @@
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
 
-  
+        <article id="reply-modal" class="modal fade" role="dialog">
+            <form id="reply-form" class="reply-form" post-id="{{ post.id }}">
+                <h1 class="reply-form__title">Reply</h1>
+                {% csrf_token %}
+                <div class="reply-form__form-control">
+                    <label for="author">Author:</label>
+                    <input type="text" name="author" />
+                </div>
+                <div class="reply-form__form-control">
+                    <label for="text">Text:</label>
+                    <textarea  type="text" name="text"></textarea>
+                </div>
+                <div class="reply-form__form-control">
+                    <button class="save btn btn-default reply-form__button"
+                            data-toggle="modal" 
+                            data-target="#reply-modal"
+                            type="button">
+                        Reply
+                    </button>
+                </div>
+                
+            </form>
+        </article>
+
     <hr>
         <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
         {% for comment in post.comments.all %}
-            <div class="comment">
-                <div class="date">{{ comment.created_date }}</div>
-                <strong>{{ comment.author }}</strong>
-                <p>{{ comment.text|linebreaks }}</p>
-            </div>
+            <div id="comments">
+                <div class="comment">
+                    <div class="date">{{ comment.created_date }}</div>
+                    <strong>{{ comment.author }}</strong>
+                    <p>{{ comment.text|linebreaks }}</p>
+                </div>
 
-            <a onClick="SuchDialog.open({
-                template: form,
-                onReady: function (content, modal) {
-                    var button = content.querySelector('#submit-button');
-                    console.log(button);
-                    button.addEventListener('click', function () {
-                        console.log('submited');
-                        modal.close();
-                    })
-                }
-            })">Reply</a>
-                {% empty %}
-                    <p>No comments here yet :(</p>
+                <a  data-toggle="modal" 
+                    data-target="#reply-modal"
+                    comment-id="{{ comment.id }}">
+                    Reply
+                </a>
+                    {% empty %}
+                        <p>No comments here yet :(</p>
+            </div>          
         {% endfor %}
     {% endblock %}
     
